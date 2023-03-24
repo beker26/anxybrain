@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/anxybrain
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    username: 7c20e766c0830d
+    auth: LOGIN
+    password: 91b91092a08425
+    port: 587
+    starttls:
+      enable: true
