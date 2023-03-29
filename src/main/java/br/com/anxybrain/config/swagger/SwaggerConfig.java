@@ -14,13 +14,13 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI expenseAPI() {
         return new OpenAPI()
-                .info(new Info().title("Reddit Clone API")
-                        .description("API for Reddit Clone Application")
+                .info(new Info().title("Anxy Brain App")
+                        .description("Social network for people who want the cure for anxiety!")
                         .version("v0.0.1")
-                        .license(new License().name("Apache License Version 2.0").url("http://programmingtechie.com")))
+                        .license(new License().name("Apache License Version 2.0").url("")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Expense Tracker Wiki Documentation")
-                        .url("https://expensetracker.wiki/docs"));
+                        .url(""));
     }
 
 }

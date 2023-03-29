@@ -23,7 +23,7 @@ public class User {
     @Id
     private ObjectId id;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -42,7 +42,7 @@ public class User {
 
     public static User toRegisterRequest(RegisterRequest registerRequest) {
         return User.builder()
-                .username(registerRequest.getUsername())
+                .userName(registerRequest.getUserName())
                 .email(registerRequest.getEmail())
                 .age(registerRequest.getAge())
                 .phoneNumber(registerRequest.getPhoneNumber())
