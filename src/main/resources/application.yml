@@ -29,5 +29,4 @@ jwt:
   private:
       key: classpath:app.key
   expiration:
-      time: 900000
-
+      time: 100000000

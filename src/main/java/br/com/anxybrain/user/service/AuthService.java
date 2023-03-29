@@ -43,7 +43,7 @@ public class AuthService {
 
     public void signup(RegisterRequest registerRequest) {
 
-        Optional<User> findByUser = userRepository.findByUsername(registerRequest.getUsername());
+        Optional<User> findByUser = userRepository.findByUserName(registerRequest.getUserName());
 
         validationUserName(findByUser);
 
@@ -72,13 +72,13 @@ public class AuthService {
     public User getCurrentUser() {
         Jwt principal = (Jwt) SecurityContextHolder.
                 getContext().getAuthentication().getPrincipal();
-        return userRepository.findByUsername(principal.getSubject())
+        return userRepository.findByUserName(principal.getSubject())
                 .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + principal.getSubject()));
     }
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
-        String username = verificationToken.getUser().getUsername();
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new SecurityException("User not found with name - " + username));
+        String userName = verificationToken.getUser().getUserName();
+        User user = userRepository.findByUserName(userName).orElseThrow(() -> new SecurityException("User not found with name - " + userName));
         user.setEnabled(true);
         userRepository.save(user);
     }
@@ -99,7 +99,7 @@ public class AuthService {
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
-        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUserName(),
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
@@ -107,18 +107,18 @@ public class AuthService {
                 .authenticationToken(token)
                 .refreshToken(refreshTokenService.generateRefreshToken().getToken())
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
-                .username(loginRequest.getUsername())
+                .userName(loginRequest.getUserName())
                 .build();
     }
 
     public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
         refreshTokenService.validateRefreshToken(refreshTokenRequest.getRefreshToken());
-        String token = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUsername());
+        String token = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUserName());
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
                 .refreshToken(refreshTokenRequest.getRefreshToken())
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
-                .username(refreshTokenRequest.getUsername())
+                .userName(refreshTokenRequest.getUserName())
                 .build();
     }
 
