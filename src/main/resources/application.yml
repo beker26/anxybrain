@@ -1,12 +1,18 @@
+server:
+  port: 8087
+
 spring:
+  ############# Database
   data:
     mongodb:
       uri: mongodb://localhost:27017/anxybrain
 
+
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher
+      matching-strategy: ANT_PATH_MATCHER
 
+  ############# Mail
   mail:
     host: sandbox.smtp.mailtrap.io
     username: 7c20e766c0830d
@@ -15,3 +21,12 @@ spring:
     port: 587
     starttls:
       enable: true
+
+  ############ JWT Properties
+jwt:
+  public:
+    key: classpath:app.pub
+  private:
+      key: classpath:app.key
+  expiration:
+      time: 100000000

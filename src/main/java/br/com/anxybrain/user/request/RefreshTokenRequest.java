@@ -1,5 +1,6 @@
 package br.com.anxybrain.user.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
+public class RefreshTokenRequest {
+    @NotBlank
+    private String refreshToken;
     private String userName;
-    private String password;
 }

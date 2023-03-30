@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequest {
 
-    private String username;
+    private String userName;
 
     private String email;
 
@@ -20,6 +20,4 @@ public class RegisterRequest {
     private String phoneNumber;
 
     private Boolean haveAnxiety;
-
-    private Boolean dontHaveAnsiety;
 }
