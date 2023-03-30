@@ -20,10 +20,6 @@ public class PostResponse {
 
     private String text;
 
-    private Long likes;
-
-    private Long comments;
-
     private File file;
 
     private String url;
@@ -37,9 +33,7 @@ public class PostResponse {
                 .id(post.getId())
                 .text(post.getText())
                 .user(UserResponse.toUserResponse(post))
-                .comments(post.getComments())
                 .url(post.getUrl())
-                .likes(post.getLikes())
                 .created(post.getCreated())
                 .file(post.getFile())
                 .build();

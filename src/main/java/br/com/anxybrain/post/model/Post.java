@@ -24,10 +24,6 @@ public class Post {
 
     private String text;
 
-    private Long likes;
-
-    private Long comments;
-
     private String url;
 
     private File file;
@@ -36,11 +32,10 @@ public class Post {
 
     private User user;
 
-    public static Post toPostRequest(PostRequest postRequest) {
+    public static Post toPostRequest(PostRequest postRequest, User currentUser) {
         return Post.builder()
-                .comments(0L)
-                .likes(0L)
                 .text(postRequest.getText())
+                .user(currentUser)
                 .created(Instant.now())
                 .url(postRequest.getUrl())
                 .build();
