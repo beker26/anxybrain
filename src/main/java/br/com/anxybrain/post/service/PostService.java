@@ -76,7 +76,7 @@ public class PostService {
 
         Post postById = postRepository.findByIdAndUserUserName(id, authService.getCurrentUser().getUserName()).orElseThrow(() -> new BusinessException("Post not found"));
 
-        br.com.anxybrain.file.model.File fileById = fileRepository.findById(postById.getFile().getId()).orElseThrow();
+        br.com.anxybrain.file.model.File fileById = fileRepository.findById(postById.getFile().getId()).orElseThrow(() -> new BusinessException("File not found"));
 
 
         File convertFile = new File(postById.getFile().getPath());
@@ -89,7 +89,7 @@ public class PostService {
 
     public PostResponse findPost(String id) {
 
-        Post post = postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElseThrow(() -> new BusinessException("Post not found"));
 
         return PostResponse.toPostResponse(post);
     }
