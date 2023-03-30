@@ -5,7 +5,7 @@ spring:
   ############# Database
   data:
     mongodb:
-      uri: ${MONGODB_URL:mongodb+srv://rodrigobeker18:XHjQFPQnu9P801Q3@anxybrain.4gbumww.mongodb.net/anxybrain?retryWrites=true&w=majority}
+      uri: ${MONGODB_URL}
 
   mvc:
     pathmatch:
