@@ -45,5 +45,11 @@ public class PostController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("deleteForComment/{idPost}/{idComment}")
+    public ResponseEntity<Void> deleteForComment(@PathVariable String idPost, @PathVariable String idComment) {
+        postService.deleteForComment(idPost, idComment);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package br.com.anxybrain.post.service;
 
+import br.com.anxybrain.comment.model.Comment;
+import br.com.anxybrain.comment.repository.CommentRepository;
 import br.com.anxybrain.exception.BusinessException;
 import br.com.anxybrain.file.repository.FileRepository;
 import br.com.anxybrain.post.model.Post;
@@ -26,6 +28,8 @@ public class PostService {
     private final PostRepository postRepository;
 
     private final FileRepository fileRepository;
+
+    private final CommentRepository commentRepository;
 
     private final AuthService authService;
 
@@ -107,5 +111,15 @@ public class PostService {
         List<Post> findAll = postRepository.findAll();
 
         return findAll.stream().map(PostResponse::toPostResponse).collect(Collectors.toList());
+    }
+
+    public void deleteForComment(String idPost, String idComment) {
+
+        Post postById = postRepository.findByIdAndUserUserName(idPost, authService.getCurrentUser().getUserName()).orElseThrow(() -> new BusinessException("Post not found")); // achou o post
+
+        Comment comment = commentRepository.findByIdAndPostId(idComment, postById.getId()).orElseThrow(() -> new BusinessException("Comment not found"));
+
+        commentRepository.delete(comment);
+
     }
 }
