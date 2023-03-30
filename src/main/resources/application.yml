@@ -5,8 +5,7 @@ spring:
   ############# Database
   data:
     mongodb:
-      uri: mongodb://localhost:27017/anxybrain
-
+      uri: mongodb+srv://rodrigobeker18:XHjQFPQnu9P801Q3@anxybrain.4gbumww.mongodb.net/?retryWrites=true&w=majority
 
   mvc:
     pathmatch:
