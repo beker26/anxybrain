@@ -5,7 +5,7 @@ spring:
   ############# Database
   data:
     mongodb:
-      uri: mongodb+srv://rodrigobeker18:XHjQFPQnu9P801Q3@anxybrain.4gbumww.mongodb.net/?retryWrites=true&w=majority
+      uri: mongodb://rodrigobeker18:XHjQFPQnu9P801Q3@ac-repgiss-shard-00-00.4gbumww.mongodb.net:27017,ac-repgiss-shard-00-01.4gbumww.mongodb.net:27017,ac-repgiss-shard-00-02.4gbumww.mongodb.net:27017/?ssl=true&replicaSet=atlas-111gmh-shard-0&authSource=admin&retryWrites=true&w=majority
 
   mvc:
     pathmatch:
