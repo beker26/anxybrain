@@ -32,8 +32,7 @@ public class PostService {
     @Transactional
     public PostResponse createPost(PostRequest postRequest, MultipartFile file) throws IOException {
 
-        Post post = Post.toPostRequest(postRequest);
-        post.setUser(authService.getCurrentUser());
+        Post post = Post.toPostRequest(postRequest, authService.getCurrentUser());
 
         if (!file.isEmpty()) {
             post.setFile(fileRepository.save(createImagePost(file)));
@@ -91,6 +90,7 @@ public class PostService {
         return PostResponse.toPostResponse(post);
     }
 
+    @Transactional
     public PostResponse editPost(String id, String text) {
 
         Post postById = postRepository.findByIdAndUserUserName(id, authService.getCurrentUser().getUserName()).orElseThrow(() -> new BusinessException("Post not found"));
