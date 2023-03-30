@@ -5,7 +5,10 @@ spring:
   ############# Database
   data:
     mongodb:
+      atlas: true
       uri: mongodb+srv://rodrigobeker18:XHjQFPQnu9P801Q3@anxybrain.4gbumww.mongodb.net/anxybrain?retryWrites=true&w=majority
+      port: 27017
+
 
   mvc:
     pathmatch:
