@@ -49,7 +49,7 @@ public class PostService {
 
     public br.com.anxybrain.file.model.File createImagePost(MultipartFile file) throws IOException {
 
-        String path = "src/main/resources/images"
+        String path = "src/main/resources/files"
                 + "/" + authService.getCurrentUser().getUserName()
                 + "/" + UUID.randomUUID()
                 + "-" + file.getOriginalFilename();
