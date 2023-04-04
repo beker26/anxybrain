@@ -44,7 +44,7 @@ public class LikeService {
 
     public List<LikeResponse> findByLikesForPost(String id) {
 
-        Post post = postRepository.findById(id).orElseThrow();
+        Post post = postRepository.findById(id).orElseThrow(() -> new BusinessException("Post not found"));
 
         return likeRepository.findByPostOrderByCreatedDesc(post)
                 .stream()
