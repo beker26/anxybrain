@@ -39,6 +39,11 @@ public class PostController {
         return new ResponseEntity<>(postService.findAllPosts(), HttpStatus.OK);
     }
 
+    @GetMapping("/postsForLogin")
+    public ResponseEntity<List<PostResponse>> findpostsForLogin() {
+        return new ResponseEntity<>(postService.postsForLogin(), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable String id) {
         postService.deletePost(id);

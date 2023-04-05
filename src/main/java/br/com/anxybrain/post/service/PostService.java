@@ -49,7 +49,7 @@ public class PostService {
 
     public br.com.anxybrain.file.model.File createImagePost(MultipartFile file) throws IOException {
 
-        String path = "src/main/resources/files"
+        String path = "src/main/resources/files/post"
                 + "/" + authService.getCurrentUser().getUserName()
                 + "/" + UUID.randomUUID()
                 + "-" + file.getOriginalFilename();
@@ -77,7 +77,6 @@ public class PostService {
         Post postById = postRepository.findByIdAndUserUserName(id, authService.getCurrentUser().getUserName()).orElseThrow(() -> new BusinessException("Post not found"));
 
         br.com.anxybrain.file.model.File fileById = fileRepository.findById(postById.getFile().getId()).orElseThrow(() -> new BusinessException("File not found"));
-
 
         File convertFile = new File(postById.getFile().getPath());
         convertFile.delete();
@@ -121,5 +120,12 @@ public class PostService {
 
         commentRepository.delete(comment);
 
+    }
+
+    public List<PostResponse> postsForLogin() {
+
+        List<Post> posts = postRepository.findByUserUserName(authService.getCurrentUser().getUserName());
+
+        return posts.stream().map(PostResponse::toPostResponse).collect(Collectors.toList());
     }
 }
