@@ -1,7 +1,9 @@
 package br.com.anxybrain.user.domain;
 
 
+import br.com.anxybrain.file.model.File;
 import br.com.anxybrain.user.request.RegisterRequest;
+import br.com.anxybrain.user.request.UserProfileRequest;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +41,12 @@ public class User {
     private Instant created;
 
     private boolean enabled;
+
+    private String bio;
+
+    private File file;
+
+    private String url;
 
     public static User toRegisterRequest(RegisterRequest registerRequest) {
         return User.builder()
