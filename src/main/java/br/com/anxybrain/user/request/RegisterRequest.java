@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegisterRequest {
 
+    private String name;
+
     private String userName;
 
     private String email;
@@ -20,4 +22,8 @@ public class RegisterRequest {
     private String phoneNumber;
 
     private Boolean haveAnxiety;
+
+    private String cpf;
+
+    private String record;
 }
