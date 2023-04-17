@@ -32,7 +32,7 @@ public class PostResponse {
         return PostResponse.builder()
                 .id(post.getId())
                 .text(post.getText())
-                .user(UserResponse.toUserResponse(post))
+                .user(UserResponse.toUserPostResponse(post))
                 .url(post.getUrl())
                 .created(post.getCreated())
                 .file(post.getFile())

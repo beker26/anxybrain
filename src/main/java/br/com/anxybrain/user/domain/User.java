@@ -3,7 +3,6 @@ package br.com.anxybrain.user.domain;
 
 import br.com.anxybrain.file.model.File;
 import br.com.anxybrain.user.request.RegisterRequest;
-import br.com.anxybrain.user.request.UserProfileRequest;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +23,8 @@ public class User {
 
     @Id
     private ObjectId id;
+
+    private String name;
 
     private String userName;
 
@@ -48,13 +49,32 @@ public class User {
 
     private String url;
 
+    private Boolean isAHealthProfessional;
+
+    private String cpf;
+
+    private String record;
+
     public static User toRegisterRequest(RegisterRequest registerRequest) {
         return User.builder()
+                .name(registerRequest.getName())
                 .userName(registerRequest.getUserName())
                 .email(registerRequest.getEmail())
                 .age(registerRequest.getAge())
                 .phoneNumber(registerRequest.getPhoneNumber())
                 .haveAnxiety(registerRequest.getHaveAnxiety())
+                .build();
+    }
+
+    public static User toRegisterProfessionalRequest(RegisterRequest registerRequest) {
+        return User.builder()
+                .userName(registerRequest.getUserName())
+                .email(registerRequest.getEmail())
+                .age(registerRequest.getAge())
+                .phoneNumber(registerRequest.getPhoneNumber())
+                .name(registerRequest.getName())
+                .cpf(registerRequest.getCpf())
+                .record(registerRequest.getRecord())
                 .build();
     }
 }
